@@ -1,14 +1,15 @@
 //getting HTML elements using DOM
-var highScoreEl=document.querySelector('#highscore-button');
-var timerEl=document.querySelector('#time-remaining');
-var startEl=document.querySelector('#start-button');
-var quizEl=document.querySelector('#quiz-container');
-var introEl=document.querySelector('#intro-container')
+var highScoreEl = document.querySelector('#highscore-button');
+var timerEl = document.querySelector('#time-remaining');
+var startEl = document.querySelector('#start-button');
+var quizEl = document.querySelector('#quiz-container');
+var introEl = document.querySelector('#intro-container')
+//delcaring elements to create Q/A as rows and coloums
+var rowEl,colEl;
 //setting timer 
-var timer=0;
+var timer = 0;
 //Quiz Questions Saved in an array object
-function loadQuestion()
-{
+function loadQuestion() {
     var questions = [
         {
             Question: "Question 1: Commonly used data types DO NOT include:",
@@ -39,18 +40,47 @@ function loadQuestion()
     return questions;
 }
 //when start button is click this function will be called
-function loadQuiz()
-{
+function loadQuiz() {
     // calculates and sets the timer 15 seconds for each question
-timer=loadQuestion().length*15;
-timerEl.value=timer;
-//on start hides the first intro section & displays the quiz section
-introEl.setAttribute('class','container d-none');
-quizEl.setAttribute('class','container');
+    numOfQA=loadQuestion().length;
+    timer = QA.length * 15;
+    timerEl.value = timer;
+    //hides intro section and displays quiz
+    introEl.setAttribute('class', 'container d-none');
+    quizEl.setAttribute('class', 'container');
+    //creating rows and coloums to display Q/A
+    rowEl=document.createElement('h2');
+    rowEl.setAttribute('class','row');
+  
+
+    colEl=document.createElement('div');
+    colEl.setAttribute('class','col-12 ');
+    colEl.textContent="you"
+    rowEl.append(colEl);
+
+    colEl=document.createElement('div');
+    colEl.setAttribute('class','col-12 ');
+    colEl.textContent="ayu"
+    rowEl.append(colEl);
+
+    colEl=document.createElement('div');
+    colEl.setAttribute('class','col-12 ');
+    colEl.textContent="ayu"
+    rowEl.append(colEl);
+    for (let i = 0; i < numOfQA; i++) {
+        if (timer > 0) {
+            rowEl.textContent=loadQuestion.Question[i];
+            quizEl.append(rowEl);
+            for()
+            colEl.textContent="you"
+            rowEl.append(colEl);
+        }
+    }
+
 
 };
 
 
-//when start button is click loadQuiz() is called
+//  Clicking the "Start" button starts the quiz, hides the Intro container, and displays the quiz container
 startEl.addEventListener("click", loadQuiz);
 
