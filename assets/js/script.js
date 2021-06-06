@@ -63,7 +63,7 @@ function endGame() {
     quiEl.append(h2El);
 
     var h3El = document.createElement("h3");
-    h3El.textContent = "You got a " + score + "/100!<";
+    h3El.textContent = "You got a " + score + "/"+questions.length*20;
     quiEl.append(h3El);
 
     var h3El2 = document.createElement("h3");
@@ -74,7 +74,7 @@ function endGame() {
     Firstname.setAttribute("type", "text");
     Firstname.setAttribute("id", "name");
 
-    Firstname.placeholder = "First name"
+    Firstname.placeholder = "Enter your intials"
     quiEl.append(Firstname);
 
     //set score button element
@@ -83,13 +83,27 @@ function endGame() {
     scoreBtn.textContent = "Set score";
     quiEl.append(scoreBtn);
 
+
     scoreBtn.addEventListener("click", function () {
         setScore();
     });
+    quiEl.innerHTML+="<br>"
+    var replayBtn  = document.createElement("Button");
+    replayBtn.setAttribute("id", "replay")
+    replayBtn.textContent = "Play Again";
+    quiEl.append(replayBtn);
+    replayBtn.addEventListener("click", function () {
+        resetGame();
+    });
+
+
+
 }
 function setScore() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("playerName", document.getElementById('name').value);
+  
+
     getScore();
 }
 
@@ -122,9 +136,6 @@ function resetGame() {
     timer = null;
 
     document.getElementById("timeLeft").innerHTML = timeLeft;
-
-
-
     var quizContent = document.getElementById("quizBody");
     var h1 = document.createElement('h1');
     h1.textContent = "Coding Quiz!"
@@ -220,6 +231,8 @@ document.querySelector("#nav").append(navLeft);
 var a = document.createElement('a');
 a.setAttribute("href", "#")
 a.addEventListener("click", function () {
+    document.getElementById("quizBody").innerHTML = " ";
+
 getScore();});
 
 navLeft.append(a);
