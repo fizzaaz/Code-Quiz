@@ -8,9 +8,6 @@ This project has been deployed to GitHub Pages. To get this project up and runni
 
 * [GitHub Repository](https://github.com/fizzaaz/Code-Quiz)
 * [Deployed GitHub IO](https://fizzaaz.github.io/Code-Quiz/)
-* [Full Demo Video]()
-
-![Code-Quiz Demo](assets/demo/gif.gif)
 
 ### Prerequisites
 
@@ -28,13 +25,13 @@ This is a quiz application using HTML, CSS, and Javascript. This application emp
     * This starts a timer for the user
     * Each question averages 15 seconds each for a total time of 75 seconds. 
 
-![](assets/images/button.PNG)
+![](assets/images/Main.JPG)
 
 * Multiple Choice Questions
     * If questions are answered incorrectly, 15 seconds are deducted from the time remaining .
     * Answers are recording using an event listener, "click".
 
-![](assets/images/question1.PNG)
+![](assets/images/1.JPG)
 
 * Score: 
     * Final score which is calculated using time remaining
@@ -43,13 +40,13 @@ This is a quiz application using HTML, CSS, and Javascript. This application emp
     * A Set Score button
     * Set Score buttom saves the initials and score to the local storage.
 
-![](assets/images/final.PNG)
+![](assets/images/Gameover.JPG)
 
 * Highscores
     * This a list summary of intials and final scores
     * Clear button resets the page and local storage
 
-![](assets/images/high.PNG)
+![](assets/images/high.JPG)
 
 ### Project Requirements
 * WHEN user click the start button THEN a timer starts and the user am presented with a question.
