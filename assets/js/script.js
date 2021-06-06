@@ -34,6 +34,7 @@ var timer;
 
 //when user clicks start button timer should be started
 function start() {
+    document.getElementById("quizBody").innerHTML = " ";
 
     timeLeft = questions.length * 15;
     document.querySelector("#timeLeft").textContent = timeLeft;
@@ -197,11 +198,11 @@ var quizbody = document.createElement('div');
 quizbody.setAttribute("id", "quizBody")
 document.querySelector("#quiz").append(quizbody);
 var h1 = document.createElement('h1');
-h1.textContent = "Coding Quiz!"
+h1.textContent = "Coding Quiz Challenge"
 quizbody.append(h1);
-var h3 = document.createElement('h3');
-h3.textContent = "Click Start to "
-quizbody.append(h3);
+var p = document.createElement('p');
+p.textContent = "Try to answer the following code-related questions within the time limit. ";
+quizbody.append(p);
 
 //start the quiz
 var startBtn = document.createElement("Button");
@@ -218,7 +219,9 @@ navLeft.setAttribute("class", "left")
 document.querySelector("#nav").append(navLeft);
 var a = document.createElement('a');
 a.setAttribute("href", "#")
-a.addEventListener("click", getScore());
+a.addEventListener("click", function () {
+getScore();});
+
 navLeft.append(a);
 var h4 = document.createElement('h4');
 h4.textContent = "High Scores";
