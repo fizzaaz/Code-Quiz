@@ -87,24 +87,14 @@ function endGame() {
     scoreBtn.addEventListener("click", function () {
         setScore();
     });
-    quiEl.innerHTML+="<br>"
-    var replayBtn  = document.createElement("Button");
-    replayBtn.setAttribute("id", "replay")
-    replayBtn.textContent = "Play Again";
-    quiEl.append(replayBtn);
-    replayBtn.addEventListener("click", function () {
-        resetGame();
-    });
-
-
+   
 
 }
 function setScore() {
     localStorage.setItem("highscore", score);
     localStorage.setItem("playerName", document.getElementById('name').value);
-  
-
-    getScore();
+    alert("Saved")
+    //getScore();
 }
 
 
@@ -114,46 +104,30 @@ function getScore() {
 
     var quizBodyEl = document.getElementById("quizBody");
     var h2 = document.createElement("h2");
+    h2.setAttribute("id","getplayername")
+
     h2.textContent = localStorage.getItem("playerName") + "'s highscore is:";
     quizBodyEl.append(h2);
     var h1 = document.createElement("h1");
+    h1.setAttribute("id","gethighscore")
     h1.textContent = localStorage.getItem("highscore");
     quizBodyEl.append(h1);
+
+    var clearStorage = document.createElement("Button");
+    clearStorage.textContent = "clear highscore";
+    quizBodyEl.append(clearStorage);
+    clearStorage.addEventListener("click", function () {
+    clearScore();
+    });
 }
+
 //clears the score name and value in the local storage if the user selects 'clear score'
 function clearScore() {
     localStorage.setItem("highscore", "");
     localStorage.setItem("playerName", "");
-    resetGame();
-}
+document.getElementById("gethighscore").textContent="";
+document.getElementById("getplayername").textContent="";
 
-//reset the game 
-function resetGame() {
-    clearInterval(timer);
-    score = 0;
-    currentQuestion = -1;
-    timeLeft = 0;
-    timer = null;
-
-    document.getElementById("timeLeft").innerHTML = timeLeft;
-    var quizContent = document.getElementById("quizBody");
-    var h1 = document.createElement('h1');
-    h1.textContent = "Coding Quiz!"
-    quizContent.append(h1);
-    var h3 = document.createElement('h3');
-    h3.textContent = "Click Start to play!"
-    quizContent.append(h3);
-
-    //start the quiz
-    var startBtn = document.createElement("Button");
-    startBtn.textContent = "Start Quiz";
-    quizbody.append(startBtn);
-
-    startBtn.addEventListener("click", function () {
-        start();
-    });
-
-    document.getElementById("quizBody").innerHTML = quizContent;
 }
 
 //deduct 15seconds from the timer if user chooses an incorrect answer
@@ -186,8 +160,10 @@ function next() {
         var ol = document.createElement("ol");
         ol.setAttribute("id", "Optionslist")
         quizContent.append(ol);
+        var showans=document.createElement('div');
 
         for (var i = 0; i < questions[currentQuestion].Opt.length; i++) {
+            showans.textContent="";
             var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
             buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].Opt[i]);
             if (questions[currentQuestion].Opt[i] == questions[currentQuestion].Ans) {
@@ -195,10 +171,12 @@ function next() {
             } else {
                 buttonCode = buttonCode.replace("[ANS]", "incorrect()");
             }
+          
             var li = document.createElement("li");
             li.innerHTML = buttonCode;
             ol.append(li);
             quizContent.append(ol);
+            ol.append(showans);
         }
     }
 
