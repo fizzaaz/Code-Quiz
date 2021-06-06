@@ -155,7 +155,10 @@ if (currentQuestion > questions.length - 1) {
     return;
 }
 
-var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
+var quizContent = document.getElementById("quizBody").innerHTML;
+var h2=document.createElement("h2");
+h2.textContent=questions[currentQuestion].Que;
+quizContent.append(h2);
 
 for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].Opt.length; buttonLoop++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
@@ -169,7 +172,7 @@ for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].Opt.length; but
 }
 
 
-document.getElementById("quizBody").innerHTML = quizContent;
+ = quizContent;
 }
 
 //body
@@ -205,6 +208,12 @@ h4.textContent="High Scores";
 a.append(h4);
 
 //countdown timer on the top right of nav bar-->
-<div class="right">
-    <h4>Time: <span id="timeLeft">0</span></h4>
-</div>
+var navRight=document.createElement('div');
+navRight.setAttribute("class","right")
+document.querySelector("#nav").append(navRight);
+var h42=document.createElement('h42');
+h42.textContent="Timer :\t";
+navRight.append(h42);
+var span=document.createElement('span');
+span.setAttribute("id","timeLeft")
+h42.append(span)
