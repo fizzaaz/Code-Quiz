@@ -56,20 +56,13 @@ This is a quiz application using HTML, CSS, and Javascript. This application emp
 
 ![](assets/images/high.PNG)
 
-### Psuedo code:  
-* Create a timer attached to a button with a starting value of 0
-* When timer is pressed start a countdown
-* When countdown starts, start quiz
-* Start Quiz will be on appended page
-* Append the question: choices
-* When user selects the right answer, textcontent "Correct!"
-* When user selects the right answer, textcontent "Wrong!"
-* Final score will keep track of how many the user got right 
-* Left over time will be deducted from final score 
-* Final Score Appended page 
-* Captures local storage
-* Travels to another HTML
-* Retrieved highscores
+
+### Project Requirements
+* WHEN user click the start button THEN a timer starts and the user am presented with a question.
+* WHEN user answer a question THEN user is presented with another question.
+* WHEN user answer a question incorrectly THEN time is subtracted from the clock
+* WHEN all questions are answered or the timer reaches 0 THEN the game is over
+* WHEN the game is over THEN user can save his/her initials and score
 
 ### This project has script features of:
 * Questions contained in an array variable with objects
