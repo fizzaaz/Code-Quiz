@@ -155,24 +155,23 @@ if (currentQuestion > questions.length - 1) {
     return;
 }
 
-var quizContent = document.getElementById("quizBody").innerHTML;
+var quizContent = document.getElementById("quizBody");
 var h2=document.createElement("h2");
 h2.textContent=questions[currentQuestion].Que;
 quizContent.append(h2);
 
-for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].Opt.length; buttonLoop++) {
+for (var i = 0; i < questions[currentQuestion].Opt.length; i++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
-    buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].Opt[buttonLoop]);
-    if (questions[currentQuestion].Opt[buttonLoop] == questions[currentQuestion].Ans) {
+    buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].Opt[i]);
+    if (questions[currentQuestion].Opt[i] == questions[currentQuestion].Ans) {
         buttonCode = buttonCode.replace("[ANS]", "correct()");
     } else {
         buttonCode = buttonCode.replace("[ANS]", "incorrect()");
     }
-    quizContent += buttonCode
+    quizContent.innerHTML += buttonCode
 }
 
 
- = quizContent;
 }
 
 //body
