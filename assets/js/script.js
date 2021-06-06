@@ -1,46 +1,46 @@
-//arrray of the quiz questions, avaialble choices, and correct answers     
+//array of an object to store the quiz Q/A 
 var questions = [{
-    title: "Which of the following function of an array object adds one or more elements to the front of an array and returns the new length of the array?",
-    choices: ["unshift( )", "sort( )", "splice( )", "toString( )"],
-    answer: "unshift( )"
+    Que: "Which operator has highest precedence?",
+    Opt: ["()", "=", "*", "+"],
+    Ans: "()"
 },
 {
-    title: "Which built-in method adds one or more elements to the end of an array and returns the new length of the array?",
-    choices: ["last( )", "put( )", "push( )", "pop( )"],
-    answer: "push( )"
+    Que: "Can we overload functions in C++?",
+    Opt: ["Yes", "No", "Compilation Error", "Runtime Error"],
+    Ans: "Yes"
 },
 {
-    title: " Which built-in method returns the characters in a string beginning at the specified location?",
-    choices: ["substr( )", "getSubstring( )", "slice( )", "None of the above."],
-    answer: "substr( )"
+    Que: "Question 5: The logical operator that represents 'or' is ____.",
+    Opt: ["||", "OR", "&&", "==="],
+    Ans: "||"
 },
 {
-    title: "Which of the following function of an array object adds and/or removes elements from an array?",
-    choices: ["toSource( )", "sort( )", "unshift( )", "splice( )"],
-    answer: "splice( )"
+    Que: "Can we assign null to void pointer?",
+    Opt: ["Yes","No"],
+    Ans: "Yes( )"
 },
 {
-    title: "Which of the following function of String object combines the text of two strings and returns a new string?",
-    choices: ["add( )", "concat( )", " merge( )", "append( )"],
-    answer: "concat( )"
+    Que: "Which of the following function of String object combines the text of two strings and returns a new string?",
+    Opt: ["add()", "concat()", " merge()", "append()"],
+    Ans: "concat()"
 }
 ]
 
-//setting the numerical variables for the functions.. scores and timers.. 
+
 var score = 0;
 var currentQuestion = -1;
 var timeLeft = 0;
 var timer;
 
-//starts the countdown timer once user clicks the 'start' button
+//when user clicks start button timer should be started
 function start() {
 
-timeLeft = 75;
-document.getElementById("timeLeft").innerHTML = timeLeft;
+timeLeft = questions.length*15;
+document.querySelector("#timeLeft").textContent = timeLeft;
 
 timer = setInterval(function() {
     timeLeft--;
-    document.getElementById("timeLeft").innerHTML = timeLeft;
+    document.querySelector("#timeLeft").textContent = timeLeft;
     //proceed to end the game function when timer is below 0 at any time
     if (timeLeft <= 0) {
         clearInterval(timer);
@@ -55,41 +55,60 @@ next();
 function endGame() {
 clearInterval(timer);
 
-var quizContent = `
-<h2>Game over!</h2>
-<h3>You got a ` + score +  ` /100!</h3>
-<h3>That means you got ` + score / 20 +  ` questions correct!</h3>
-<input type="text" id="name" placeholder="First name"> 
-<button onclick="setScore()">Set score!</button>`;
+var quiEl = document.getElementById("quizBody");
 
-document.getElementById("quizBody").innerHTML = quizContent;
+var h2El=document.createElement("h2");
+h2El.textContent="Game over!";
+quiEl.append(h2El);
+
+var h3El=document.createElement("h3");
+h3El.textContent="You got a " + score +  "/100!<";
+quiEl.append(h3El);
+
+var h3El2=document.createElement("h3");
+h3El2.textContent="That means you got " + score / 20 +  " questions correct";
+quiEl.append(h3El2);
+
+var Firstname=document.createElement("input");
+Firstname.setAttribute("type", "text");
+Firstname.setAttribute("id", "name");
+
+Firstname.placeholder="First name"
+quiEl.append(Firstname);
+
+//set score button element
+var scoreBtn=scoreBtn=document.createElement("Button");
+scoreBtn.setAttribute("id","setscore")
+scoreBtn.textContent="Set score";
+quiEl.append(scoreBtn);
+
+scoreBtn.addEventListener("click", function () {
+    setScore();
+});
 }
-
-//store the scores on local storage
 function setScore() {
-localStorage.setItem("highscore", score);
-localStorage.setItem("highscoreName",  document.getElementById('name').value);
-getScore();
-}
-
+    localStorage.setItem("highscore", score);
+    localStorage.setItem("playerName",  document.getElementById('name').value);
+    getScore();
+    }
+    
+    
+//store the scores on local storage
 
 function getScore() {
-var quizContent = `
-<h2>` + localStorage.getItem("highscoreName") + `'s highscore is:</h2>
-<h1>` + localStorage.getItem("highscore") + `</h1><br> 
 
-<button onclick="clearScore()">Clear score!</button><button onclick="resetGame()">Play Again!</button>
-
-`;
-
-document.getElementById("quizBody").innerHTML = quizContent;
+var quizBodyEl = document.getElementById("quizBody");
+var h2=document.createElement("h2");
+h2.textContent=localStorage.getItem("playerName") + "'s highscore is:";
+quizBodyEl.append(h2);
+var h1=document.createElement("h1");
+h1.textContent=localStorage.getItem("highscore") ;
+quizBodyEl.append(h1);
 }
-
 //clears the score name and value in the local storage if the user selects 'clear score'
 function clearScore() {
 localStorage.setItem("highscore", "");
-localStorage.setItem("highscoreName",  "");
-
+localStorage.setItem("playerName",  "");
 resetGame();
 }
 
@@ -138,10 +157,10 @@ if (currentQuestion > questions.length - 1) {
 
 var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
 
-for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length; buttonLoop++) {
+for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].Opt.length; buttonLoop++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
-    buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
-    if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
+    buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].Opt[buttonLoop]);
+    if (questions[currentQuestion].Opt[buttonLoop] == questions[currentQuestion].Ans) {
         buttonCode = buttonCode.replace("[ANS]", "correct()");
     } else {
         buttonCode = buttonCode.replace("[ANS]", "incorrect()");
@@ -152,3 +171,5 @@ for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].choices.length;
 
 document.getElementById("quizBody").innerHTML = quizContent;
 }
+
+
