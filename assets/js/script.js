@@ -44,6 +44,8 @@ function start() {
         document.querySelector("#timeLeft").textContent = timeLeft;
         //proceed to end the game function when timer is below 0 at any time
         if (timeLeft <= 0) {
+            document.querySelector("#timeLeft").textContent = timeLeft;
+
             clearInterval(timer);
             endGame();
         }
@@ -228,3 +230,4 @@ navRight.append(h42);
 var span = document.createElement('span');
 span.setAttribute("id", "timeLeft")
 h42.append(span)
+document.querySelector("#timeLeft").textContent = 0;
