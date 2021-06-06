@@ -171,9 +171,8 @@ for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].Opt.length; but
 
 document.getElementById("quizBody").innerHTML = quizContent;
 }
-function onload()
-{
 
+//body
 var quizbody=document.createElement('div');
 quizbody.setAttribute("id","quizBody")
 document.querySelector("#quiz").append(quizbody);
@@ -189,8 +188,23 @@ var startBtn=document.createElement("Button");
 startBtn.textContent="Start Quiz";
 quizbody.append(startBtn);
 
-scoreBtn.addEventListener("click", function () {
+startBtn.addEventListener("click", function () {
     start();
 });
-}
-onload();
+
+//view highscores link on the top left of nav bar-->
+var navLeft=document.createElement('div');
+navLeft.setAttribute("class","left")
+document.querySelector("#nav").append(navLeft);
+var a=document.createElement('a');
+quizbody.setAttribute("href","#")
+a.addEventListener("click",getScore());
+navLeft.append(a);
+var h4=document.createElement('h4');
+h4.textContent="High Scores";
+a.append(h4);
+
+//countdown timer on the top right of nav bar-->
+<div class="right">
+    <h4>Time: <span id="timeLeft">0</span></h4>
+</div>
