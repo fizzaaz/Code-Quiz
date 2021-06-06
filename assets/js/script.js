@@ -192,3 +192,4 @@ scoreBtn.addEventListener("click", function () {
     start();
 });
 }
+onload();
