@@ -44,7 +44,7 @@ function start() {
         document.querySelector("#timeLeft").textContent = timeLeft;
         //proceed to end the game function when timer is below 0 at any time
         if (timeLeft <= 0) {
-            document.querySelector("#timeLeft").textContent = timeLeft;
+            document.getElementById("quizBody").innerHTML = " ";
 
             clearInterval(timer);
             endGame();
@@ -205,6 +205,7 @@ startBtn.addEventListener("click", function () {
 });
 
 //view highscores link on the top left of nav bar-->
+
 var navLeft = document.createElement('div');
 navLeft.setAttribute("class", "left")
 document.querySelector("#nav").append(navLeft);
@@ -229,5 +230,5 @@ h42.textContent = "Timer :";
 navRight.append(h42);
 var span = document.createElement('span');
 span.setAttribute("id", "timeLeft")
+span.textContent="0";
 h42.append(span)
-document.querySelector("#timeLeft").textContent = 0;
