@@ -122,14 +122,24 @@ timer = null;
 
 document.getElementById("timeLeft").innerHTML = timeLeft;
 
-var quizContent = `
-<h1>
-    JavaScript Quiz!
-</h1>
-<h3>
-    Click to play!   
-</h3>
-<button onclick="start()">Start!</button>`;
+
+
+var quizContent=document.getElementById("quizBody");
+var h1=document.createElement('h1');
+h1.textContent="Coding Quiz!"
+quizContent.append(h1);
+var h3=document.createElement('h3');
+h3.textContent="Click Start to play!"
+quizContent.append(h3);
+
+//start the quiz
+var startBtn=document.createElement("Button");
+startBtn.textContent="Start Quiz";
+quizbody.append(startBtn);
+
+startBtn.addEventListener("click", function () {
+    start();
+});
 
 document.getElementById("quizBody").innerHTML = quizContent;
 }
@@ -137,12 +147,14 @@ document.getElementById("quizBody").innerHTML = quizContent;
 //deduct 15seconds from the timer if user chooses an incorrect answer
 function incorrect() {
 timeLeft -= 15; 
+document.getElementById("quizBody").innerHTML=" ";
 next();
 }
 
 //increases the score by 20points if the user chooses the correct answer
 function correct() {
 score += 20;
+document.getElementById("quizBody").innerHTML=" ";
 next();
 }
 
@@ -154,11 +166,14 @@ if (currentQuestion > questions.length - 1) {
     endGame();
     return;
 }
-
+else{
 var quizContent = document.getElementById("quizBody");
 var h2=document.createElement("h2");
 h2.textContent=questions[currentQuestion].Que;
 quizContent.append(h2);
+var ol=document.createElement("ol");
+ol.setAttribute("id","Optionslist")
+quizContent.append(ol);
 
 for (var i = 0; i < questions[currentQuestion].Opt.length; i++) {
     var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>"; 
@@ -168,9 +183,12 @@ for (var i = 0; i < questions[currentQuestion].Opt.length; i++) {
     } else {
         buttonCode = buttonCode.replace("[ANS]", "incorrect()");
     }
-    quizContent.innerHTML += buttonCode
+    var li=document.createElement("li");
+    li.innerHTML=buttonCode;
+    ol.append(li);
+    quizContent.append(ol);
 }
-
+}
 
 }
 

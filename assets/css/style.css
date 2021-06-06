@@ -59,3 +59,9 @@ button:hover {
     text-align: center;
 }
 
+#Optionslist
+{
+    text-align: left;
+    font-weight: bold;
+    margin-left: 12%;
+}
