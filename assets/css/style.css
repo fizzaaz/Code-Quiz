@@ -2,20 +2,31 @@
 /* nav bar */
 .right {
     float: right;
+margin-right: 5%;
+margin-top:2.4%;
 }
 
 .left {
     float: left;
+
 }
 
 #nav {
     display: block;
-    background-color: white;
+    background-color: #e64e79;
     display: inline-block;
-    width: 98vw;
+    width: 101%;
     border: 3px solid #e64e79;
     border-radius: 5px;
-    margin: 6px;
+    margin-left: -.75%;
+    margin-right: 5%;
+    color: white;
+    font-weight: bold;
+}
+
+#nav h4{
+    color: white;
+   
 }
 
 /* main section */
@@ -38,6 +49,7 @@ a {
     text-decoration: none;
     color: black;
 }
+
 
 button {
     border: none;
