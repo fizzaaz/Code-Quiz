@@ -12,11 +12,6 @@ This project has been deployed to GitHub Pages. To get this project up and runni
 
 ![Code-Quiz Demo](assets/demo/gif.gif)
 
-    
-
-T
-
-
 ### Prerequisites
 
 To install this application, you will need a text editor. I would recommend Visual Studio Code. 
@@ -56,7 +51,6 @@ This is a quiz application using HTML, CSS, and Javascript. This application emp
 
 ![](assets/images/high.PNG)
 
-
 ### Project Requirements
 * WHEN user click the start button THEN a timer starts and the user am presented with a question.
 * WHEN user answer a question THEN user is presented with another question.
@@ -90,5 +84,3 @@ This is a quiz application using HTML, CSS, and Javascript. This application emp
         * For Loops
         * Functions 
         * Local Storage set and get function
-
-
