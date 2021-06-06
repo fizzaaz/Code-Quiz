@@ -176,6 +176,7 @@ function onload()
 
 var quizbody=document.createElement('div');
 quizbody.setAttribute("id","quizBody")
+document.querySelector("#quiz").append(quizbody);
 var h1=document.createElement('h1');
 h1.textContent="Coding Quiz!"
 quizbody.append(h1);
@@ -186,7 +187,7 @@ quizbody.append(h3);
 //start the quiz
 var startBtn=document.createElement("Button");
 startBtn.textContent="Start Quiz";
-quiEl.append(startBtn);
+quizbody.append(startBtn);
 
 scoreBtn.addEventListener("click", function () {
     start();
